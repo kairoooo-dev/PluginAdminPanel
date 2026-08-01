@@ -1,0 +1,275 @@
+/* License generator — page layout on top of admin.css */
+
+.lic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border-soft);
+    position: sticky;
+    top: 0;
+    background: rgba(11, 11, 16, .92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+}
+.lic-header .brand { padding: 0; }
+.lic-nav { display: flex; gap: 6px; }
+.lic-nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 9px;
+    transition: color .15s, background .15s;
+}
+.lic-nav a:hover { color: var(--text); background: var(--surface-2); }
+
+.lic-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 34px 24px 80px;
+    display: grid;
+    gap: 22px;
+}
+
+/* ---------- Generator panel ---------- */
+.panel-gen { position: relative; overflow: hidden; }
+.panel-gen::before, .panel-gen::after {
+    content: '';
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+}
+.panel-gen::before {
+    background: rgba(229, 72, 77, .16);
+    top: -140px;
+    right: -80px;
+    animation: orb-float 9s ease-in-out infinite alternate;
+}
+.panel-gen::after {
+    background: rgba(90, 169, 247, .12);
+    bottom: -150px;
+    left: -90px;
+    animation: orb-float 11s ease-in-out infinite alternate-reverse;
+}
+@keyframes orb-float {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(-34px, 26px) scale(1.14); }
+}
+.panel-gen > * { position: relative; z-index: 1; }
+
+.gen-head { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+.gen-head .panel-title { margin-bottom: 4px; }
+
+.gen-lock {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    color: #ffb86b;
+    border: 1px solid rgba(233, 177, 58, .45);
+    background: rgba(233, 177, 58, .08);
+    box-shadow: 0 0 26px rgba(233, 177, 58, .25);
+    animation: lock-pulse 2.6s ease-in-out infinite;
+}
+.gen-lock svg { width: 26px; height: 26px; }
+@keyframes lock-pulse {
+    0%, 100% { box-shadow: 0 0 18px rgba(233, 177, 58, .2); }
+    50% { box-shadow: 0 0 38px rgba(233, 177, 58, .45); }
+}
+
+/* ---------- Generate button ---------- */
+.btn-gen {
+    background: linear-gradient(135deg, #e5484d, #f28b4b 55%, #e9b13a);
+    color: #14141b;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 26px;
+    border: none;
+    box-shadow: 0 6px 24px rgba(229, 72, 77, .35);
+    position: relative;
+    overflow: hidden;
+}
+.btn-gen:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(229, 72, 77, .5); }
+.btn-gen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .55), transparent);
+    transform: skewX(-20deg);
+    animation: shine-sweep 2.8s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+    0%, 60% { left: -80%; }
+    100% { left: 140%; }
+}
+
+/* ---------- Plugin picker ---------- */
+.lic-pick {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+}
+.lic-pick label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    cursor: pointer;
+    transition: border-color .15s, transform .15s;
+}
+.lic-pick label:hover { border-color: var(--text-faint); transform: translateY(-1px); }
+.lic-pick label:has(input:checked) {
+    border-color: rgba(233, 177, 58, .55);
+    background: rgba(233, 177, 58, .06);
+}
+.lic-pick input { width: auto; }
+.lic-pick strong { display: block; font-size: 13.5px; color: var(--text); }
+.lic-pick em { font-style: normal; font-size: 11.5px; color: var(--text-faint); }
+.lic-create-actions { display: flex; align-items: center; gap: 14px; }
+
+/* ---------- Key reveal ---------- */
+.gen-result {
+    margin-top: 24px;
+    padding: 26px 28px;
+    border-radius: 16px;
+    position: relative;
+    background: radial-gradient(120% 160% at 50% 0%, rgba(233, 177, 58, .10), rgba(11, 11, 16, 0) 60%), var(--surface-2);
+    border: 1px solid rgba(233, 177, 58, .4);
+    box-shadow: 0 0 44px rgba(233, 177, 58, .12), inset 0 1px 0 rgba(255, 255, 255, .04);
+    overflow: hidden;
+}
+.gen-result::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .07), transparent);
+    transform: skewX(-20deg);
+    animation: shine-sweep 3.6s ease-in-out infinite;
+}
+.gen-result.pop { animation: result-pop .45s cubic-bezier(.2, 1.4, .4, 1); }
+@keyframes result-pop {
+    from { opacity: 0; transform: translateY(14px) scale(.96); }
+    to { opacity: 1; transform: none; }
+}
+
+.gen-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    color: #ffb86b;
+    margin-bottom: 16px;
+}
+.gen-label-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff6b6b;
+    box-shadow: 0 0 12px rgba(255, 107, 107, .9);
+    animation: dot-blink 1.4s ease-in-out infinite;
+}
+@keyframes dot-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+.key-display {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    border-radius: 12px;
+    background: rgba(5, 5, 9, .7);
+    border: 1px solid rgba(233, 177, 58, .25);
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, .5);
+    min-height: 64px;
+}
+.key-display code {
+    font-family: var(--mono);
+    font-size: clamp(17px, 2.6vw, 24px);
+    font-weight: 600;
+    letter-spacing: .12em;
+    color: #ffd9a0;
+    text-shadow: 0 0 18px rgba(233, 177, 58, .55);
+    word-break: break-all;
+    line-height: 1.5;
+    display: inline-block;
+}
+.key-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(9px) scale(.85);
+    animation: key-pop .3s cubic-bezier(.2, 1.4, .4, 1) forwards;
+}
+@keyframes key-pop {
+    to { opacity: 1; transform: none; }
+}
+.key-caret {
+    display: inline-block;
+    width: 3px;
+    height: 1.15em;
+    margin-left: 6px;
+    background: #ff6b6b;
+    box-shadow: 0 0 10px rgba(255, 107, 107, .8);
+    animation: caret-blink 1s steps(2, start) infinite;
+    vertical-align: text-bottom;
+}
+@keyframes caret-blink { to { visibility: hidden; } }
+
+.gen-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+.gen-tip { margin-top: 14px; font-size: 12.5px; color: var(--text-faint); }
+
+/* ---------- License table ---------- */
+.lic-key-cell { font-family: var(--mono); font-size: 12.5px; letter-spacing: .03em; }
+.row-actions { display: flex; gap: 6px; justify-content: flex-end; }
+.icon-btn.danger { color: var(--accent-strong); }
+
+/* ---------- Requirement toggles ---------- */
+.req-list { display: grid; gap: 8px; }
+.req-list label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    cursor: pointer;
+}
+.req-list input { width: auto; }
+.req-list .req-info { display: flex; flex-direction: column; gap: 1px; }
+.req-list .req-name { font-size: 13.5px; color: var(--text); font-weight: 500; }
+.req-list .req-cat { font-size: 11.5px; color: var(--text-faint); }
+.req-list .req-state { margin-left: auto; }
+
+@media (max-width: 700px) {
+    .lic-header { flex-wrap: wrap; padding: 14px 18px; }
+    .lic-wrap { padding: 22px 14px 60px; }
+    .lic-pick { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+    .lic-pick { grid-template-columns: 1fr; }
+}

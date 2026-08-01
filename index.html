@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>License generator · Crowz-Plugins</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/license.css">
+</head>
+<body>
+
+<header class="lic-header">
+    <a class="brand" href="../Crowz-Plugins/index.html">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 2 30 10v12L16 30 2 22V10Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M11 21V11h2.4l4.6 6.4V11H20v10h-2.4L13 14.6V21Z" fill="currentColor"/>
+        </svg>
+        <span class="brand-name">License generator</span>
+    </a>
+    <nav class="lic-nav">
+        <a href="../Crowz-admin/index.html">User admin</a>
+        <a href="../Crowz-Plugins/admin.html">Admin</a>
+        <a href="../Crowz-Plugins/index.html">Back to site</a>
+    </nav>
+</header>
+
+<main class="lic-wrap">
+
+    <div class="stat-cards" id="lic-stats"></div>
+
+    <section class="panel panel-gen">
+        <div class="gen-head">
+            <div class="gen-lock" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <rect x="4" y="11" width="16" height="10" rx="2"/>
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                    <circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/>
+                </svg>
+            </div>
+            <div>
+                <h3 class="panel-title">License generator</h3>
+                <p class="muted">Pick the plugins the key unlocks. That's it — the key is generated instantly and never expires until you revoke it.</p>
+            </div>
+        </div>
+
+        <form id="lic-create">
+            <div class="lic-pick" id="lic-plugins"></div>
+            <label class="lic-owner">
+                <span>Assign to account (optional)</span>
+                <select id="lic-owner-select">
+                    <option value="">— Unassigned —</option>
+                </select>
+            </label>
+            <div class="lic-create-actions">
+                <button class="btn btn-gen" type="submit">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z"/>
+                    </svg>
+                    Generate license
+                </button>
+                <span class="muted" id="lic-count"></span>
+            </div>
+        </form>
+
+        <div class="gen-result" id="key-result" hidden>
+            <p class="gen-label"><span class="gen-label-dot"></span> YOUR LICENSE KEY</p>
+            <div class="key-display"><code id="new-key" aria-live="polite"></code></div>
+            <div class="gen-actions">
+                <button class="btn btn-primary btn-sm" id="copy-key" type="button">Copy key</button>
+                <a class="btn btn-ghost btn-sm" href="../Crowz-Plugins/index.html">Open the site to download</a>
+                <span class="muted" id="gen-covers"></span>
+            </div>
+            <p class="gen-tip">The key is already active in this browser — head to the site and hit Download, no typing needed.</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h3 class="panel-title">All licenses</h3>
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Key</th><th>Plugins</th><th>Owner</th><th>Created</th><th>Status</th><th class="num">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="lic-rows"></tbody>
+            </table>
+        </div>
+        <p class="table-empty" id="lic-empty" hidden>No licenses yet — generate one above.</p>
+    </section>
+
+    <section class="panel">
+        <h3 class="panel-title">Plugins that require a license</h3>
+        <p class="muted">Switch a plugin on to make the download page ask for a valid license key before the jar can be downloaded.</p>
+        <div class="req-list" id="lic-requirements"></div>
+    </section>
+
+</main>
+
+<div class="toast" id="lic-toast"></div>
+
+<script src="js/plugins.js"></script>
+<script src="js/store.js"></script>
+<script src="js/licenses.js"></script>
+</body>
+</html>
